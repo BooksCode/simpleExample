@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="button_height">50dp</string>
-    <string name="button_width">50dp</string>
     <string name="num_1">1</string>
     <string name="num_2">2</string>
     <string name="num_3">3</string>
