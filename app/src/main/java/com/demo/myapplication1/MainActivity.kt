@@ -42,6 +42,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * typeNum时遍历数组 显示当前的数字
      * 等于时 计算完成
      * */
+    /**
+     * 底部初始化num的初始值不应该有内容
+     * 解决方法：
+     * var num = "0"
+     * 改为
+     * var num = ""
+     * */
     private fun refreshScreen(type: String) {
         when (type) {
             typeNum -> {
@@ -61,6 +68,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     /**
      * 点击了加减乘除等于
+     * */
+    /**
+     * 会导致最终计算出现数组越界崩溃
+     * 去除type 5分支下
+     * operationList?.add(type)
+     * 不记录等于的操作
      * */
     private fun onOperation(type: Int) {
         if (lastOpr != typeOprPub) {
@@ -138,6 +151,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     /**
      * 全局数组和显示初始化
+     * */
+    /**
+     * 点击等于以后，显示器被刷为空白
+     * 解决办法：
+     * screen.text = ""
+     * 改为
+     * if (status) screen.text = ""
      * */
     private fun initGlobal(status: Boolean) {
         content = ""
