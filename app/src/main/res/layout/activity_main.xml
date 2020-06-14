@@ -24,6 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:text="Hello World!"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:layout_margin="20dp"
                 android:background="@drawable/corners_bg"

@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val typeResult: String = "BTN_CAL"
     private val typeOprPub: String = "BTN_OPR_PUB"
     private val typeOprClear: String = "BTN_OPR_CLEAR"
-    var dataList: MutableList<Long>? = ArrayList()
+    var dataList: MutableList<Double>? = ArrayList()
     var operationList: MutableList<Int>? = ArrayList()
     var numList: MutableList<String>? = ArrayList()
     private var lastOpr = ""
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initListener()
-        initGlobal()
+        initGlobal(true)
     }
 
     /**
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * */
     private fun onClickNum(num: String) {
         if (lastOpr == typeOprClear)
-            initGlobal()
+            initGlobal(true)
         lastOpr = typeNum
         numList?.add(num)
         refreshScreen(typeNum)
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun refreshScreen(type: String) {
         when (type) {
             typeNum -> {
-                var num = "0"
+                var num = ""
                 numList?.forEach { it ->
                     num += it
                 }
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             else -> {
                 screen.text = content
+                initGlobal(false)
             }
         }
 
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * 点击了加减乘除等于
      * */
     private fun onOperation(type: Int) {
-        (lastOpr != typeOprPub).let {
+        if (lastOpr != typeOprPub) {
             when (type) {
                 /**
                  * 加-1
@@ -72,8 +73,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                  * 等于-5
                  * clear-6
                  * */
+                5 -> {
+                    screen.text = ""
+                    manageOpr(type)
+                }
                 6 -> {
-                    initGlobal()
+                    initGlobal(true)
                     return
                 }
                 else -> {
@@ -86,13 +91,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             numList?.forEach { it ->
                 num += it
             }
-            dataList?.add(num.toLong())
+            dataList?.add(num.toDouble())
             numList?.clear()
             if (type == 5) {
                 startCal()
             }
-        } ?: kotlin.run {
-            Toast.makeText(this, "非法操作", Toast.LENGTH_LONG)
+        } else {
+            Toast.makeText(this, "非法操作", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -103,12 +108,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             num_1?.let {
                 //do nothing
             } ?: kotlin.run {
-                num_1 = 0
+                num_1 = "0".toDouble()
             }
             num_2?.let {
                 //do nothing
             } ?: kotlin.run {
-                num_2 = 0
+                num_2 = "0".toDouble()
             }
             when (opr) {
                 1 -> {
@@ -124,9 +129,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     content = (num_1!! / num_2!!).toString()
                 }
             }
-            dataList?.remove(0)
-            dataList?.remove(1)
-            dataList?.add(0, content.toLong())
+            dataList?.removeAt(0)
+            dataList?.removeAt(0)
+            dataList?.add(0, content.toDouble())
         }
         refreshScreen(typeResult)
     }
@@ -134,13 +139,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     /**
      * 全局数组和显示初始化
      * */
-    private fun initGlobal() {
+    private fun initGlobal(status: Boolean) {
         content = ""
         lastOpr = ""
         dataList?.clear()
         numList?.clear()
         operationList?.clear()
-        screen.text = ""
+        if (status)
+            screen.text = ""
     }
 
     /**
@@ -182,6 +188,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.clear -> {
+                onOperation(6)
             }
             R.id.btn_1 -> {
                 onClickNum(getString(R.string.num_1))
@@ -226,6 +233,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 onOperation(5)
             }
             else -> {
+                onOperation(6)
             }
         }
     }
