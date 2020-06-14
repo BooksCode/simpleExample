@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--挑战1-->
+            <!--产品需求：顶部显示器有圆角需求，UI类型问题-->
+            <!--在下面这一段XML里加入下面这一行可以解决问题-->
+            <!--android:background="@drawable/corners_bg"-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Hello World!"
+                android:gravity="center"
+                android:layout_margin="20dp"
+                android:background="@drawable/corners_bg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!--挑战一下
+                            产品需求：按钮为灰色背景，且文字显示为白色
+                            在下面这一段XML里加入下面这一行可以解决问题
+                            android:background="@drawable/corners_button_bg"
+                            android:textColor="#ffffff"-->
+                        <!--
+                        UI显示不完整，把底部这两行该进去进去就可以解决
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        去掉
+                        android:layout_width="10dp"
+                        -->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/clear"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@string/button_height"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/clear"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold"
+                            tools:ignore="OnClick" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!--挑战一下
+                            产品需求：按钮为灰色背景，且文字显示为白色
+                            在下面这一段XML里加入下面这一行可以解决问题
+                            android:background="@drawable/corners_button_bg"
+                            android:textColor="#ffffff"-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_1"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_2"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_3"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!--挑战一下
+                            产品需求：按钮为灰色背景，且文字显示为白色
+                            在下面这一段XML里加入下面这一行可以解决问题
+                            android:background="@drawable/corners_button_bg"
+                            android:textColor="#ffffff"-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_4"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_5"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_6"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!--挑战一下
+                            产品需求：按钮为灰色背景，且文字显示为白色
+                            在下面这一段XML里加入下面这一行可以解决问题
+                            android:background="@drawable/corners_button_bg"
+                            android:textColor="#ffffff"-->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_7"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_8"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@string/button_height"
+                            android:layout_margin="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_9"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/opr_1"
+                        android:layout_width="@string/button_width"
+                        android:layout_height="@string/button_height"
+                        android:layout_margin="10dp"
+                        android:text="@string/num_plus"
+                        android:textSize="@dimen/text_button_size"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_button_bg"
+                        android:textColor="#ffffff"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/opr_2"
+                        android:layout_width="@string/button_width"
+                        android:layout_height="@string/button_height"
+                        android:layout_margin="10dp"
+                        android:text="@string/num_minus"
+                        android:textSize="@dimen/text_button_size"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_button_bg"
+                        android:textColor="#ffffff"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/opr_3"
+                        android:layout_width="@string/button_width"
+                        android:layout_height="@string/button_height"
+                        android:layout_margin="10dp"
+                        android:text="@string/num_sign"
+                        android:textSize="@dimen/text_button_size"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_button_bg"
+                        android:textColor="#ffffff"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/opr_4"
+                        android:layout_width="@string/button_width"
+                        android:layout_height="@string/button_height"
+                        android:layout_margin="10dp"
+                        android:text="@string/num_division"
+                        android:textSize="@dimen/text_button_size"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_button_bg"
+                        android:textColor="#ffffff"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/opr_5"
+                        android:layout_width="@string/button_width"
+                        android:layout_height="@string/button_height"
+                        android:layout_margin="10dp"
+                        android:text="@string/num_equal"
+                        android:textSize="@dimen/text_button_size"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_button_bg"
+                        android:textColor="#ffffff"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
