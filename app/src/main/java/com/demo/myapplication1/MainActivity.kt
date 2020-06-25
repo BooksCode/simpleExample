@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.DecimalFormat
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -13,11 +14,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val typeResult: String = "BTN_CAL"
     private val typeOprPub: String = "BTN_OPR_PUB"
     private val typeOprClear: String = "BTN_OPR_CLEAR"
+    private val typeOprResult: String = "BTN_OPR_RESULT"
     var dataList: MutableList<Double>? = ArrayList()
     var operationList: MutableList<Int>? = ArrayList()
     var numList: MutableList<String>? = ArrayList()
     private var lastOpr = ""
     private var content = ""
+    private var contentBackup = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +59,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 numList?.forEach { it ->
                     num += it
                 }
-                screen.text = num
+                screen.text = getDoubleString(num.toDouble())
             }
             else -> {
-                screen.text = content
+                contentBackup = content
+                screen.text = getDoubleString(content.toDouble())
                 initGlobal(false)
             }
         }
@@ -76,6 +80,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * 不记录等于的操作
      * */
     private fun onOperation(type: Int) {
+        var num = "0"
+        if (lastOpr != typeOprResult) {
+            numList?.forEach { it ->
+                num += it
+            }
+        }
         if (lastOpr != typeOprPub) {
             when (type) {
                 /**
@@ -87,8 +97,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                  * clear-6
                  * */
                 5 -> {
-                    screen.text = ""
-                    manageOpr(type)
+                    if (operationList?.size == 0) {
+                        Toast.makeText(this, "非法操作", Toast.LENGTH_LONG).show()
+                        return
+                    } else {
+                        screen.text = ""
+                        manageOpr(type)
+                    }
                 }
                 6 -> {
                     initGlobal(true)
@@ -96,13 +111,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 else -> {
                     screen.text = ""
+                    if (lastOpr == typeOprResult) {
+                        num = contentBackup
+                    }
                     manageOpr(type)
                     operationList?.add(type)
                 }
-            }
-            var num = "0"
-            numList?.forEach { it ->
-                num += it
             }
             dataList?.add(num.toDouble())
             numList?.clear()
@@ -161,7 +175,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * */
     private fun initGlobal(status: Boolean) {
         content = ""
-        lastOpr = ""
+        //lastOpr = ""
         dataList?.clear()
         numList?.clear()
         operationList?.clear()
@@ -174,6 +188,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * */
     private fun manageOpr(type: Int) {
         lastOpr = when (type) {
+            5 -> {
+                typeOprResult
+            }
             6 -> {
                 typeOprClear
             }
@@ -260,5 +277,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 onOperation(6)
             }
         }
+    }
+
+    /**
+     * double类型如果小数点后为零显示整数否则保留 返回String
+     * @param num
+     * @return
+     */
+    private fun getDoubleString(number: Double): String? {
+        val numberStr: String
+        numberStr = if (number.toLong() * 1000 == (number * 1000).toLong()) {
+            //如果是一个整数
+            number.toLong().toString()
+        } else {
+            val df = DecimalFormat("######0.00")
+            df.format(number)
+        }
+        return numberStr
     }
 }
