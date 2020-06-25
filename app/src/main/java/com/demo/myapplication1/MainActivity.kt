@@ -189,6 +189,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * */
     private fun initListener() {
         clear.setOnClickListener(this)
+        btn_0.setOnClickListener(this)
         btn_1.setOnClickListener(this)
         btn_2.setOnClickListener(this)
         btn_3.setOnClickListener(this)
@@ -209,6 +210,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.clear -> {
                 onOperation(6)
+            }
+            R.id.btn_0 -> {
+                onClickNum(getString(R.string.num_0))
             }
             R.id.btn_1 -> {
                 onClickNum(getString(R.string.num_1))

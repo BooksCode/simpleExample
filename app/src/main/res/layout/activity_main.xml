@@ -49,6 +49,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:orientation="horizontal">
 
                         <!--挑战一下
@@ -67,7 +68,7 @@
                             android:id="@+id/clear"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/button_height"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="20dp"
                             android:background="@drawable/corners_button_bg"
@@ -77,6 +78,27 @@
                             android:textSize="@dimen/text_button_size"
                             android:textStyle="bold"
                             tools:ignore="OnClick" />
+
+                        <!--
+                        防止0按钮向下偏移
+                        android:layout_margin="20dp"
+                        改为
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        -->
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/corners_button_bg"
+                            android:gravity="center"
+                            android:text="@string/num_0"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/text_button_size"
+                            android:textStyle="bold" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -237,7 +259,7 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="end"
                     android:orientation="vertical">
